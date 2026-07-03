@@ -3,6 +3,15 @@
 Copiloto de venture studio para discovery e execução de MVPs com IA.
 
 📋 [Documento de Enquadramento](docs/enquadramento.md) — contexto, dor, hipótese de valor, métrica de validação e fora de escopo.
+🏗️ [Documento de Arquitetura](docs/arquitetura.md) — justificativa da stack (Next.js, FastAPI, PostgreSQL, Docker, OpenAPI).
+
+## Como contribuir
+
+1. Leia `docs/enquadramento.md` e `docs/arquitetura.md` antes de escrever código — eles são o contrato do produto.
+2. Registre a tarefa no Tasknotes (`tn new`) e trabalhe em ciclos curtos: planejar → implementar → revisar.
+3. Abra um PR usando o template em `.github/PULL_REQUEST_TEMPLATE.md` — o checklist é obrigatório.
+4. Nunca commite segredos: `.env` fica fora do Git; documente variáveis novas em `.env.example`.
+5. Ao pausar, deixe um handoff em `docs/handoff.md` (contexto, decisões pendentes, próxima ação).
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
