@@ -1,3 +1,9 @@
+# Paris Group Copilot
+
+Copiloto de venture studio para discovery e execução de MVPs com IA.
+
+📋 [Documento de Enquadramento](docs/enquadramento.md) — contexto, dor, hipótese de valor, métrica de validação e fora de escopo.
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
