@@ -33,6 +33,7 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 !.env.example
+!.env.local.example
 
 # python (backend FastAPI em api/)
 __pycache__/

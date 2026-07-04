@@ -35,11 +35,19 @@ hipoteses: List[HipoteseResponse] = []
 def health():
     return {"status": "ok"}
 
+@app.get("/projetos", response_model=List[ProjetoResponse])
+def listar_projetos():
+    return projetos
+
 @app.post("/projetos", response_model=ProjetoResponse)
 def criar_projeto(payload: ProjetoCreate):
     projeto = ProjetoResponse(id=len(projetos) + 1, **payload.model_dump())
     projetos.append(projeto)
     return projeto
+
+@app.get("/hipoteses", response_model=List[HipoteseResponse])
+def listar_hipoteses():
+    return hipoteses
 
 @app.post("/hipoteses", response_model=HipoteseResponse)
 def criar_hipotese(payload: HipoteseCreate):
