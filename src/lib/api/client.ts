@@ -15,9 +15,12 @@ async function getJson<T>(path: string): Promise<T> {
   return (await res.json()) as T;
 }
 
-// Cliente tipado: o retorno é Projeto[], não `any`.
+// Cliente tipado: o retorno é Projeto[]/Projeto, não `any`.
 export const apiClient = {
   listProjetos(): Promise<Projeto[]> {
     return getJson<Projeto[]>("/projetos");
+  },
+  getProjeto(id: number): Promise<Projeto> {
+    return getJson<Projeto>(`/projetos/${id}`);
   },
 };

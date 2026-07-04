@@ -34,6 +34,7 @@ yarn-error.log*
 .env*
 !.env.example
 !.env.local.example
+!.env.production.example
 
 # python (backend FastAPI em api/)
 __pycache__/

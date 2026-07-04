@@ -1,5 +1,5 @@
 from typing import List
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel, Field
 
 app = FastAPI(
@@ -38,6 +38,13 @@ def health():
 @app.get("/projetos", response_model=List[ProjetoResponse])
 def listar_projetos():
     return projetos
+
+@app.get("/projetos/{projeto_id}", response_model=ProjetoResponse)
+def obter_projeto(projeto_id: int):
+    for projeto in projetos:
+        if projeto.id == projeto_id:
+            return projeto
+    raise HTTPException(status_code=404, detail="Projeto não encontrado")
 
 @app.post("/projetos", response_model=ProjetoResponse)
 def criar_projeto(payload: ProjetoCreate):
