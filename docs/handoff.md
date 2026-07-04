@@ -90,26 +90,33 @@ Essa decisão bloqueia o deploy porque muda a `DATABASE_URL`, o modelo de auth e
 
 ## 4. Próxima Ação
 
-Responsável: Matheus.
+Próximos passos:
 
-Próximo passo:
+- Matheus: implementar persistência no PostgreSQL para POST /projetos e POST /hipoteses até o próximo ciclo de desenvolvimento.
+- Rafael: revisar o contrato OpenAPI dos endpoints e validar se os schemas continuam claros até o fim do próximo ciclo.
+- Marina: revisar o template de PR e garantir que os critérios de aceite estejam claros na Definição de Pronto até a próxima revisão do repositório.
 
-Implementar persistência real no PostgreSQL para os endpoints POST /projetos e POST /hipoteses.
+Depois disso, o próximo ciclo será criar o frontend para consumir os endpoints persistidos.
 
-Critérios de aceitação:
+### Critérios de Aceitação da Próxima Ação
 
-- POST /projetos salva no PostgreSQL.
-- POST /hipoteses salva no PostgreSQL.
-- A API continua expondo contrato OpenAPI em /docs.
+- POST /projetos salva os dados no PostgreSQL.
+- POST /hipoteses salva os dados no PostgreSQL.
+- A API continua expondo o contrato OpenAPI em /docs.
 - GET /health continua retornando {"status":"ok"}.
 - docker compose up --build sobe API e banco sem erro.
 - .env.example continua documentado.
 - Nenhum segredo real entra no Git.
+- A mudança deve ter evidência de teste manual ou automatizado.
 
-Próximos passos (responsável: ação até quando):
+## 5. Reflexão — Decisão Mais Crítica
 
-- Matheus: implementar persistência no PostgreSQL para POST /projetos e POST /hipoteses até o próximo ciclo.
-- Rafael: implementar o endpoint /hypothesis (contrato OpenAPI + schema) seguindo o padrão da stack reutilizável.
-- Marina: revisar o PR template e adicionar critérios de aceite à Definição de Pronto.
+A decisão mais crítica neste momento é escolher como a API vai conversar com o PostgreSQL e se o projeto já vai adotar migrações com Alembic.
 
-Depois disso, o próximo ciclo será criar o frontend para consumir esses endpoints.
+Essa decisão precisa ser tomada antes de implementar a persistência porque ela define o padrão de banco que será reutilizado nos próximos ciclos e possivelmente em outros MVPs do studio.
+
+Se o projeto começar com queries soltas ou criação manual de tabelas, pode parecer mais rápido no começo, mas gera retrabalho quando o banco evoluir. Cada nova tabela, campo ou alteração de schema vira uma mudança difícil de rastrear.
+
+Por isso, minha decisão sugerida é usar SQLAlchemy ou SQLModel com Alembic desde o início. Mesmo que isso adicione um pouco de configuração agora, cria um padrão mais seguro, rastreável e reutilizável para o studio.
+
+Essa é uma decisão mais importante que criar os endpoints GET neste momento, porque os endpoints de listagem dependem da estrutura de persistência estar bem definida primeiro.
