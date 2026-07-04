@@ -55,4 +55,33 @@ Critérios de aceitação para a evolução:
 - Não foi criado backend novo.
 - Não foi alterada a API existente.
 - Não foi criado banco.
-- Não foi feito commit — aguardando revisão humana.
+
+## 7. Status de Commit
+
+Após a revisão visual (light/dark) e o build passar, a feature foi commitada e enviada:
+
+- Commit: `7b3b1d3` — "feat: adiciona página de decisões técnicas"
+- Branch: `main` (push feito para origin)
+- O scaffold **não** foi commitado antes da revisão humana (conforme o prompt), só depois de validado no navegador.
+
+## 8. Scaffold com Claude Code — Prompt e o que foi Aceito/Rejeitado
+
+Prompt usado com o agente (Claude Code) para gerar a página, com critérios de aceitação explícitos:
+
+> Objetivo: criar uma página /decisoes no frontend Next.js para listar decisões técnicas do Paris Group Copilot.
+> Escopo: (1) registrar tarefas no Tasknotes; (2) criar o scaffold da rota /decisoes; (3) não commitar ainda — revisar antes.
+> Critérios: rota em src/app/decisoes/page.tsx abrindo em localhost:3000/decisoes; listar decisões em cards; cada uma com titulo, status, descricao; usar as 4 decisões reais do handoff; status possíveis pendente/decidida/revisada; array local no page.tsx por enquanto; sem backend, sem alterar API, sem banco; rodar npm run build no fim e mostrar o resultado.
+
+O que aceitei do scaffold gerado:
+- A rota /decisoes no frontend, com array local no page.tsx.
+- A listagem das 4 decisões técnicas reais do handoff principal.
+- A tipagem `DecisaoStatus` (pendente/decidida/revisada).
+- O ajuste de contraste com `var(--foreground)`.
+- Manter a feature sem backend, API ou banco neste ciclo.
+
+O que rejeitei ou limitei:
+- Rejeitei o texto de descrição com cor cinza fixa — ficava ilegível no dark mode (troquei por `var(--foreground)`).
+- Rejeitei criar backend novo para decisões neste ciclo.
+- Rejeitei criar persistência no banco agora.
+- Rejeitei commitar antes da validação visual.
+- Limitei o escopo a uma página simples e verificável.
